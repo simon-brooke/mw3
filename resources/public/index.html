@@ -11,23 +11,25 @@
     <title>Welcome to MicroWorld!</title>
   </head>
   <body>
-    <ul id="tab-bar">
-      <li class="tab" id="home-tab" onclick="core.home()">
-        Home
-      </li>
-      <li class="tab" id="params-tab" onclick="core.params()">
-        Params
-      </li>
-      <li class="tab" id="rules-tab" onclick="onclick.rules()">
-        Rules
-      </li>
-      <li class="tab" id="world-tab" onclick="onclick.world()">
-        World
-      </li>
-      <li class="tab" id="docs-tab" onclick="onclick.docs()">
-        Documentation
-      </li>
-    </ul>
+    <div id="tab-bar-target">
+      <ul id="tab-bar">
+        <li class="tab" id="home-tab">
+          <a href="#home-content">Home</a>
+        </li>
+        <li class="tab" id="params-tab">
+          <a href="#params-content">Params</a>
+        </li>
+        <li class="tab" id="rules-tab">
+          <a href="#rules-content">Rules</a>
+        </li>
+        <li class="tab" id="world-tab">
+          <a href="#world-content">World</a>
+        </li>
+        <li class="tab" id="docs-tab">
+          <a href="#docs-content">Documentation</a>
+        </li>
+      </ul>
+    </div>
     <div id="home-content">
       <a name="home-content"></a>
       <h1>
@@ -352,8 +354,8 @@
     </div>
     <div id="footer">
       <div id="credits">
-        Built with <a href="http://www.luminusweb.net/">LuminusWeb</a> ||
-        <img height="16" width="16" align="top" src="img/clojure-icon.gif"> Powered by <a href="http://clojure.org">Clojure</a> ||
+        Built with <a href="https://github.com/plexus/chestnut">Chestnut</a> ||
+        <img height="16" width="16" align="top" src="img/clojure-icon.gif"> Powered by <a href="http://clojure.org">ClojureScript</a> ||
         Engineering and hosting by <a href="http://www.journeyman.cc">Journeyman</a> ||
         World generated using <a href="http://git.journeyman.cc/?p=mw-engine;a=summary">MicroWorld Engine</a>
       </div>
