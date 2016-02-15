@@ -1,0 +1,52 @@
+td.waste {
+ 	background-color: gray;
+}
+
+td.water {
+ 	background-color: blue;
+}
+
+td.pasture, td.grassland, td.meadow {
+	background-color: lime;
+}
+
+td.crop {
+	background-color: yellow;
+}
+
+td.camp, td.house, td.inn, td.market {
+	background-color: gray;
+}
+
+td.ploughland {
+	background-color: brown;
+}
+
+td.heath {
+	background-color: chartreuse;
+}
+
+td.scrub {
+ 	background-color: lime;
+}
+
+td.forest {
+ 	background-color: forestgreen;
+}
+
+td.climax {
+	background-color: olive;
+}
+
+td.fire {
+ 	background-color: orange;
+}
+
+td.error, td.plague {
+	background-color: red;
+}
+
+td.snow, td.ice {
+	background-color: white;
+}
+
