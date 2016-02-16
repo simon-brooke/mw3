@@ -14,341 +14,346 @@
     <div id="tab-bar-target">
       <ul id="tab-bar">
         <li class="tab" id="home-tab">
-          <a href="#home-content">Home</a>
+          Home
         </li>
         <li class="tab" id="params-tab">
-          <a href="#params-content">Params</a>
+          Parameters
         </li>
         <li class="tab" id="rules-tab">
-          <a href="#rules-content">Rules</a>
+          Rules
         </li>
         <li class="tab" id="world-tab">
-          <a href="#world-content">World</a>
+          World
         </li>
         <li class="tab" id="docs-tab">
-          <a href="#docs-content">Documentation</a>
+          Documentation
         </li>
       </ul>
     </div>
-    <div id="home-content">
-      <a name="home-content"></a>
-      <h1>
-        Welcome to MicroWorld!
-      </h1>
-      <div class="content">
-        <h2>What this is about</h2>
-        <p>
-          <img alt="Screenshot" id="screenshot" style="float: left; padding-right: 2em;" src="img/screenshot_med.png"/>
-          MicroWorld is a rule driven cellular automaton. What does that mean? Well, it's a two dimensional world made up of squares called <strong>cells</strong>. The world develops in steps, and at each step, each cell is modified by applying the rules.</p>
-        <p><a href='world'>Go and watch</a> it running for a few moments, then come back here.</p><p>The demonstration world is a mountain, with snow at the top and the sea at the  bottom. as you watched, you probably saw the bright green of grass on the lower slopes of the mountain turn to the darker green of forest. You may have seen some forest fires break out.</p>
-        <p>That's all controlled by rules. You make the rules. To start Noah's flood,  <a href='rules'>go to the rules page</a> now, and add this rule at the very top:</p>
-        <pre>
-  if altitude is less than 200 then state should be water
-  </pre>
-        <p>then, <a href='world'>go and watch the world</a> again. What happens? You should see water spread across everywhere except the very top of the mountain. But after the  flood, the waters should drain away again. Go back to <a href='rules'>rules</a> and add  this rule at the very top:</p>
-        <pre>
-  if altitude is more than 9 and state is water then state should be grassland
-  </pre>
-        <p>Now the world alternates between <em>new</em> and <em>grassland</em>. That's no good! Go back to <a href='rules'>rules</a> and delete the rule that you first added - the one that says</p>
-        <pre>
-  if altitude is less than 200 then state should be water
-  </pre>
-        <p>And see! The world starts growing again.</p>
-        <h2>What you can do next</h2>
-        <h3>Change some rules</h3>
-        <p>Change some of the other rules and see what happens. Very likely, one of the  first things that will happen is that you will get a message like this:</p>
-        <pre>
-  I did not understand 'if state is grassland then 1 chance in 10 state will be heath'
-  </pre>
-        <p>That means that you changed a rule in a way that the engine could no longer understand it. To find out what the engine will understand, have a look at the <a href='docs#grammar'>documentation</a>.</p>
-        <h3>Invent some rules of your own!</h3>
-        <p>What happens when people come into the world? Where would they make their first  camp? Would they want to be near the water, so they could fish? Would they want to be near fertile grassland, to graze their sheep and cattle?</p>
-        <h4>Write a rule which adds some camps to the world</h4>
-        <p>What happens to the land around a camp? Do the people burn down forest to make  new grassland? Do they convert the grassland into meadow, or into crop?</p>
-        <p>Does growing crops reduce the soil fertility? What makes people decide that their camp is a good enough place to build a proper house?</p>
-        <h4>Write some rules which describe this</h4>
-        <p>How many squares of meadow or crop does it take to feed each house full of people? What happens when there are too many houses and not enough fields? Can houses  catch fire? What happens to a house which is next to a fire?</p>
-        <p>How many houses do you need for a market place? Where would people build a harbour?</p>
-        <h3>Change the rules completely</h3>
-        <p>I've provided rules which use the MicroWorld cellular automaton to make a simple model of the changes to land in Europe after the ice age. But you don't have to use it like that, at all.</p>
-        <p><a href='http://en.wikipedia.org/wiki/Conway's&#95;Game&#95;of&#95;Life'>Conway's Game of Life</a> is one of the famous uses of a cellular automaton. The rules for the Game of Life are very simple. To set up your game of life you'll need some initialisation rules, one for every cell you want to start live (we'll use <i>black</i> for live, and  <i>white</i> for dead):</p>
-        <pre>
-  if x is equal to 4 and y is equal to 4 and state is new then state should be black</pre>
-        <p>Add as many of these as you need for your starting pattern. Then add a rule, after all those:</p>
-        <pre>
-  if state is new then state should be white
-  </pre>
-        <p>I'll leave you to work out what the rules of life are for yourself, from the Wiki page I linked to.</p>
-        <p><strong>CHEAT</strong> <i>You'll find other rule sets you can explore if you go to the <a href='params'>Parameters</a> page</i>.</p>
+    <div id="content">
+      <div id="home-content">
+        <a name="home-content"></a>
+        <h1>
+          Welcome to MicroWorld!
+        </h1>
+        <div class="content">
+          <h2>What this is about</h2>
+          <p>
+            <img alt="Screenshot" id="screenshot" style="float: left; padding-right: 2em;" src="img/screenshot_med.png"/>
+            MicroWorld is a rule driven cellular automaton. What does that mean? Well, it's a two dimensional world made up of squares called <strong>cells</strong>. The world develops in steps, and at each step, each cell is modified by applying the rules.</p>
+          <p><a href='world'>Go and watch</a> it running for a few moments, then come back here.</p><p>The demonstration world is a mountain, with snow at the top and the sea at the  bottom. as you watched, you probably saw the bright green of grass on the lower slopes of the mountain turn to the darker green of forest. You may have seen some forest fires break out.</p>
+          <p>That's all controlled by rules. You make the rules. To start Noah's flood,  <a href='rules'>go to the rules page</a> now, and add this rule at the very top:</p>
+          <pre>
+    if altitude is less than 200 then state should be water
+    </pre>
+          <p>then, <a href='world'>go and watch the world</a> again. What happens? You should see water spread across everywhere except the very top of the mountain. But after the  flood, the waters should drain away again. Go back to <a href='rules'>rules</a> and add  this rule at the very top:</p>
+          <pre>
+    if altitude is more than 9 and state is water then state should be grassland
+    </pre>
+          <p>Now the world alternates between <em>new</em> and <em>grassland</em>. That's no good! Go back to <a href='rules'>rules</a> and delete the rule that you first added - the one that says</p>
+          <pre>
+    if altitude is less than 200 then state should be water
+    </pre>
+          <p>And see! The world starts growing again.</p>
+          <h2>What you can do next</h2>
+          <h3>Change some rules</h3>
+          <p>Change some of the other rules and see what happens. Very likely, one of the  first things that will happen is that you will get a message like this:</p>
+          <pre>
+    I did not understand 'if state is grassland then 1 chance in 10 state will be heath'
+    </pre>
+          <p>That means that you changed a rule in a way that the engine could no longer understand it. To find out what the engine will understand, have a look at the <a href='docs#grammar'>documentation</a>.</p>
+          <h3>Invent some rules of your own!</h3>
+          <p>What happens when people come into the world? Where would they make their first  camp? Would they want to be near the water, so they could fish? Would they want to be near fertile grassland, to graze their sheep and cattle?</p>
+          <h4>Write a rule which adds some camps to the world</h4>
+          <p>What happens to the land around a camp? Do the people burn down forest to make  new grassland? Do they convert the grassland into meadow, or into crop?</p>
+          <p>Does growing crops reduce the soil fertility? What makes people decide that their camp is a good enough place to build a proper house?</p>
+          <h4>Write some rules which describe this</h4>
+          <p>How many squares of meadow or crop does it take to feed each house full of people? What happens when there are too many houses and not enough fields? Can houses  catch fire? What happens to a house which is next to a fire?</p>
+          <p>How many houses do you need for a market place? Where would people build a harbour?</p>
+          <h3>Change the rules completely</h3>
+          <p>I've provided rules which use the MicroWorld cellular automaton to make a simple model of the changes to land in Europe after the ice age. But you don't have to use it like that, at all.</p>
+          <p><a href='http://en.wikipedia.org/wiki/Conway's&#95;Game&#95;of&#95;Life'>Conway's Game of Life</a> is one of the famous uses of a cellular automaton. The rules for the Game of Life are very simple. To set up your game of life you'll need some initialisation rules, one for every cell you want to start live (we'll use <i>black</i> for live, and  <i>white</i> for dead):</p>
+          <pre>
+    if x is equal to 4 and y is equal to 4 and state is new then state should be black</pre>
+          <p>Add as many of these as you need for your starting pattern. Then add a rule, after all those:</p>
+          <pre>
+    if state is new then state should be white
+    </pre>
+          <p>I'll leave you to work out what the rules of life are for yourself, from the Wiki page I linked to.</p>
+          <p><strong>CHEAT</strong> <i>You'll find other rule sets you can explore if you go to the <a href='params'>Parameters</a> page</i>.</p>
+        </div>
       </div>
-    </div>
-    <div id="params-content">
-      <a name="params-content"></a>
-      <h1>
-        Set your parameters
-      </h1>
-      <div class="content">
-        <form action="{{servlet-context}}/params" method="POST">
-          <p class="widget">
-            <label for="ruleset">The rule set to use</label>
-            <select name="ruleset">
-              <option value="">No change - use your current rules</option>
-              {% for ruleset in rulesets %}
-              <option value="{{ruleset}}">{{ruleset}}</option>
-              {% endfor %}
-            </select>
-          </p>
-          <p class="widget">
-            <label for="heightmap">The map to use</label>
-            <select name="heightmap">
-              <option value="">No change - use your current map</option>
-              {% for heightmap in heightmaps %}
-              <option value="{{heightmap}}">{{heightmap}}</option>
-              {% endfor %}
-            </select>
-          </p>
-          <p class="widget">
-            <label for="pause">
-              Pause duration
-            </label>
-            <input id="pause" type="range" value="{{pause}}" min="0" max="60" step="5" />
-          </p>
-          <p class="help">
-            The pause beteen computing a new state of your world, in seconds
-          </p>
-          <p class="widget">
-            <label for="submit">When you have chosen your parameters</label>
-                <input name="submit" id="submit" type="submit" value="Save your parameters!"/>
-          </p>
-        </form>
+      <div id="params-content">
+        <a name="params-content"></a>
+        <h1>
+          Set your parameters
+        </h1>
+        <div class="content">
+          <form action="{{servlet-context}}/params" method="POST">
+            <p class="widget">
+              <label for="ruleset">The rule set to use</label>
+              <select name="ruleset">
+                <option value="">No change - use your current rules</option>
+                {% for ruleset in rulesets %}
+                <option value="{{ruleset}}">{{ruleset}}</option>
+                {% endfor %}
+              </select>
+            </p>
+            <p class="widget">
+              <label for="heightmap">The map to use</label>
+              <select name="heightmap">
+                <option value="">No change - use your current map</option>
+                {% for heightmap in heightmaps %}
+                <option value="{{heightmap}}">{{heightmap}}</option>
+                {% endfor %}
+              </select>
+            </p>
+            <p class="widget">
+              <label for="pause">
+                Pause duration
+              </label>
+              <input id="pause" type="range" value="{{pause}}" min="0" max="60" step="5" />
+            </p>
+            <p class="help">
+              The pause beteen computing a new state of your world, in seconds
+            </p>
+            <p class="widget">
+              <label for="submit">When you have chosen your parameters</label>
+                  <input name="submit" id="submit" type="submit" value="Save your parameters!"/>
+            </p>
+          </form>
+        </div>
       </div>
-    </div>
-    <div id="rules-content">
-      <a name="rules-content"></a>
-      <h1>
-        Edit your rules
-      </h1>
-      <div class="content">
-        <form action="{{servlet-context}}/rules" method="POST">
-          <textarea name="src" id="src" rows="10" cols="80">
-        {{rule-text}}
-          </textarea>
-          <p class="widget">
-            <label for="submit">When you have finished editing</label>
-                <input name="submit" id="submit" type="submit" value="Save your rules"/>
-          </p>
+      <div id="rules-content">
+        <a name="rules-content"></a>
+        <h1>
+          Edit your rules
+        </h1>
+        <div class="content">
+          <form action="{{servlet-context}}/rules" method="POST">
+            <textarea name="src" id="src" rows="10" cols="80">
+          {{rule-text}}
+            </textarea>
+            <p class="widget">
+              <label for="submit">When you have finished editing</label>
+                  <input name="submit" id="submit" type="submit" value="Save your rules"/>
+            </p>
 
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
-    <div id="world-content">
-      <a name="world-content"></a>
-
-    </div>
-    <div id="docs-content">
-      <a name="docs-content"></a>
-      <h1>
-        Read the documentation
-      </h1>
-      <div class="content">
-        <div>
-          <a name="top"/>
-          <menu>
-            <li><a href="#top">Top</a></li>
-            <li><a href="#grammar">Rule language</a></li>
-            <li><a href="#states">Implemented states</a></li>
-            <li><a href="#api">API documentation</a></li>
-            <li><a href="#teachers">For teachers</a></li>
-          </menu>
-          <hr/>
-        <div><a name="parser">&nbsp;</a></div>
-          {{parser|safe}}
-          <hr/>
-        <div><a name="states">&nbsp;</a></div>
-          <menu>
-            <li><a href="#top">Top</a></li>
-            <li><a href="#grammar">Rule language</a></li>
-            <li><a href="#states">Implemented states</a></li>
-            <li><a href="#api">API documentation</a></li>
-            <li><a href="#teachers">For teachers</a></li>
-          </menu>
-          <hr/>
-          <h2>Implemented states</h2>
-          <p>As it says in the rule language documentation, above, you can use
-          any sequence of alphanumeric characters you want as the name of a state
-          - you can call it whatever you like. However, if you use state
-          names that there aren't already tiles for, and aren't already classes
-          for in the CSS file, your states won't be displayed nicely in the
-          <a href="{{servlet-context}}/">World</a> display. The states for which
-          there are already tiles are:</p>
-          <ul>
-          {% for state in states %}
-            <li>
-              {{state}}
-              <img src="{{servlet-context}}/img/tiles/{{state}}.png"/>
-            </li>
-          {% endfor %}
-          </ul>
-
-        <div><a name="api">&nbsp;</a></div>
-          <hr/>
-          <menu>
-            <li><a href="#top">Top</a></li>
-            <li><a href="#grammar">Rule language</a></li>
-            <li><a href="#states">Implemented states</a></li>
-            <li><a href="#api">API documentation</a></li>
-            <li><a href="#teachers">For teachers</a></li>
-          </menu>
-          <hr/>
-          <h2>API documentation</h2>
-
-        <p>If you're adventurous you may want to modify the MicroWorld engine
-        itself. To do that you'll need this documentation.
-
+      <div id="world-content">
+        <a name="world-content"></a>
+        <h1>
+          Watch your world grow
+        </h1>
+        (the world goes here)
+      </div>
+      <div id="docs-content">
+        <a name="docs-content"></a>
+        <h1>
+          Read the documentation
+        </h1>
+        <div class="content">
+          <div>
+            <a name="top"/>
+            <menu>
+              <li><a href="#top">Top</a></li>
+              <li><a href="#grammar">Rule language</a></li>
+              <li><a href="#states">Implemented states</a></li>
+              <li><a href="#api">API documentation</a></li>
+              <li><a href="#teachers">For teachers</a></li>
+            </menu>
+            <hr/>
+          <div><a name="parser">&nbsp;</a></div>
+            {{parser|safe}}
+            <hr/>
+          <div><a name="states">&nbsp;</a></div>
+            <menu>
+              <li><a href="#top">Top</a></li>
+              <li><a href="#grammar">Rule language</a></li>
+              <li><a href="#states">Implemented states</a></li>
+              <li><a href="#api">API documentation</a></li>
+              <li><a href="#teachers">For teachers</a></li>
+            </menu>
+            <hr/>
+            <h2>Implemented states</h2>
+            <p>As it says in the rule language documentation, above, you can use
+            any sequence of alphanumeric characters you want as the name of a state
+            - you can call it whatever you like. However, if you use state
+            names that there aren't already tiles for, and aren't already classes
+            for in the CSS file, your states won't be displayed nicely in the
+            <a href="{{servlet-context}}/">World</a> display. The states for which
+            there are already tiles are:</p>
             <ul>
-              {% for component in components %}
+            {% for state in states %}
               <li>
-                <a href="{{servlet-context}}/docs/{{component}}/uberdoc.html">
-                  {{component}}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
-
-        <div><a name="teachers">&nbsp;</a></div>
-          <hr/>
-          <menu>
-            <li><a href="#top">Top</a></li>
-            <li><a href="#grammar">Rule language</a></li>
-            <li><a href="#states">Implemented states</a></li>
-            <li><a href="#api">API documentation</a></li>
-            <li><a href="#teachers">For teachers</a></li>
-          </menu>
-          <hr/>
-           <h2>For teachers</h2>
-           <p>MicroWorld was written in the hope that it would be of use for teachers,
-           particularly teachers in primary schools. The reason for attempting to write
-           a very simple rule language was that young people would be able to create
-           their own rules and rule sets.</p>
-
-           <h3>Classroom setup</h3>
-           <p>MicroWorld will run on a Raspberry Pi, and I plan to produce a
-           downloadable SD card image which auto-runs it. One ideal classroom setup
-           would be to have one Raspberry Pi running MicroWorld to every group of
-           two or three children.</p>
-           <p>MicroWorld will also run on any ordinary PC, including Windows,
-           Macintosh and Linux machines. I plan to produce a packaged installer
-           for each operating system.</p>
-           <h4>Servers and clients</h4>
-           <p>MicroWorld is a web-app, which means it runs in a web server and the
-           user interface is a web browser. It would be possible to arrange a
-           classroom with one copy of MicroWorld on a single server, and each child's
-           machine running MicroWorld from that single server.</p>
-           <p>However, many users accessing the same server at the same time may
-           lead to poor performance.
-           Check performance on your system before introducing a class to it, and if in doubt,
-           running a separate copy on each machine used by children may well be more
-           satisfactory.</p>
-           <p>If many users are using the same shared machine, you should make sure
-           that they don't use the 'original' or 'med' versions of the Great Britain
-           and Ireland map - both of these are big, and performance will inevitably
-           be poor.</p>
-
-           <h3>Subject areas</h3>
-           <p>One of my main objectives in writing MicroWorld was to create a system
-           which would be engaging for children and would enable them to see
-           computing in the context of other subject areas.</p>
-           <h4>Geography</h4>
-           <p>Maps of Great Britain and Ireland, and of the Isle of Man, are included
-           in the distribution; however, only the 'small' version of the map of
-           Great Britain and Ireland is really useable, the others are too big and
-           will be two slow. However, you can cut a map of your local area from the
-           larger maps if that is helpful to your class.</p>
-           <p>The following rulesets are of potential use in geography teaching:</p>
-           <dl>
-            <dt>basic</dt>
-            <dd>A very simple ruleset which simply establishes vegetation in the
-            landscape. Not particularly useful in itself, but a good ruleset for
-            children to use as a basis for their own projects.</dd>
-            <dt>iceage<dt>
-            <dd>illustrates ice thawing gradually. Because of inadequacies in the
-            rule language, currently the ice retreats from north to south, which is
-            of course wrong for the northern hemisphere; but the principle of
-            retreating ice, the way in which ice retreats up mountains, and the way
-            in which ecosystems establish themselves.</dd>
-            <dt>ecology</dt>
-            <dd>Attempts to model the effects of browsers and predators - represented
-            by deer and wolves, respectively - on the landscape.</dd>
-            <dt>settlement</dt>
-            <dd>illustrates human settlement appearing first on coastal promontaries
-            (e.g. kitchen-midden people), gradually spreads inland (in this model as
-            nomadic pastoralists), and forms permanent settlements where conditions
-            are favourable. This helps explore why the towns in your locality are
-            where they are. The model is obviously simplified, but produces a
-            potentially useful account of settlement in at least north-western Europe
-            from paleolithic up to at least late bronze age. <b>Note</b> that unless
-            your map has at least some coastal promontaries this ruleset will need
-            to be modified.</dd>
-            <dt>
-           </dl>
-           <p>All of these rulesets are deliberately simple. This is so that
-           children have something to start with, but so that they can actually make
-           real, demonstrable improvements quite simply.</p>
-           <h4>History</h4>
-           <p>The <em>settlement</em> ruleset is probably the best starting point for
-           history exploration. As described above, it essentially covers only
-           pre-history; the development of the feudal system, for example, or of
-           industrialisation, are not modelled. They could be, as (more advanced)
-           class projects. Writing rules will enable discussion of why castles, or
-           mills, are positioned where they are, and what the social consequences of
-           these developments are.</p>
-           <p>You might also want to explore the conditions for the spread of epidemic
-           disease - such as the black death - I've provided a state for this,
-           but no rules.</p>
-           <h4>IT/Informatics</h4>
-           <p>Obviously, any of the rulesets but particularly the <em>life</em>
-           ruleset are good introduction points to informatics lessons. The rule
-           language is sufficiently simple that introducing children to writing
-           their own rules can begin almost as soon as basic literacy is
-           established.</p>
-           <p>In more advanced IT lessons, at the upper end of primary school or in
-           secondary schools, I would encourage you to explore modifying the engine
-           itself in your classes. Also, it would be interesting to write an
-           export program which would export MicroWorld maps to Minecraft, or
-           render them as explorable three dimensional spaces using
-           <a href="http://jmonkeyengine.org/">JMonkeyEngine</a>
-           or <a href="https://nightmod.net/">NightMod</a>.</p>
-           <h4>Art and design</h4>
-           <p>A number of projects, progressively more ambitious, are possible in
-           art and design.</p>
-           <ol>
-           <li>The tiles I've drawn are pretty basic - again, that's
-           intentional, children can easily produce better ones. They don't have to
-           be 32x32, but they do all have to be the same size.</li>
-           <li>The stylesheets providing the overall look and feel of the system
-           could be modified</li>
-           <li>If you have an IT project to render a 3d world, you will need 3d
-           models of each of the states, instead of tiles. That might be a job for
-           <a href="http://blender.org">Blender</a>.</li></ol>
-
-        <h3>Lesson plans</h3>
-            <ul>
-            {% for lesson in lessons %}
-              <li>
-                <a href="{{servlet-context}}/md?content=lesson-plans/{{lesson}}.md">
-                  {{lesson}}
-                </a>
+                {{state}}
+                <img src="{{servlet-context}}/img/tiles/{{state}}.png"/>
               </li>
             {% endfor %}
             </ul>
-          <hr/>
-          <menu>
-            <li><a href="#top">Top</a></li>
-            <li><a href="#grammar">Rule language</a></li>
-            <li><a href="#states">Implemented states</a></li>
-            <li><a href="#api">API documentation</a></li>
-            <li><a href="#teachers">For teachers</a></li>
-          </menu>
+
+          <div><a name="api">&nbsp;</a></div>
+            <hr/>
+            <menu>
+              <li><a href="#top">Top</a></li>
+              <li><a href="#grammar">Rule language</a></li>
+              <li><a href="#states">Implemented states</a></li>
+              <li><a href="#api">API documentation</a></li>
+              <li><a href="#teachers">For teachers</a></li>
+            </menu>
+            <hr/>
+            <h2>API documentation</h2>
+
+          <p>If you're adventurous you may want to modify the MicroWorld engine
+          itself. To do that you'll need this documentation.
+
+              <ul>
+                {% for component in components %}
+                <li>
+                  <a href="{{servlet-context}}/docs/{{component}}/uberdoc.html">
+                    {{component}}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+
+          <div><a name="teachers">&nbsp;</a></div>
+            <hr/>
+            <menu>
+              <li><a href="#top">Top</a></li>
+              <li><a href="#grammar">Rule language</a></li>
+              <li><a href="#states">Implemented states</a></li>
+              <li><a href="#api">API documentation</a></li>
+              <li><a href="#teachers">For teachers</a></li>
+            </menu>
+            <hr/>
+             <h2>For teachers</h2>
+             <p>MicroWorld was written in the hope that it would be of use for teachers,
+             particularly teachers in primary schools. The reason for attempting to write
+             a very simple rule language was that young people would be able to create
+             their own rules and rule sets.</p>
+
+             <h3>Classroom setup</h3>
+             <p>MicroWorld will run on a Raspberry Pi, and I plan to produce a
+             downloadable SD card image which auto-runs it. One ideal classroom setup
+             would be to have one Raspberry Pi running MicroWorld to every group of
+             two or three children.</p>
+             <p>MicroWorld will also run on any ordinary PC, including Windows,
+             Macintosh and Linux machines. I plan to produce a packaged installer
+             for each operating system.</p>
+             <h4>Servers and clients</h4>
+             <p>MicroWorld is a web-app, which means it runs in a web server and the
+             user interface is a web browser. It would be possible to arrange a
+             classroom with one copy of MicroWorld on a single server, and each child's
+             machine running MicroWorld from that single server.</p>
+             <p>However, many users accessing the same server at the same time may
+             lead to poor performance.
+             Check performance on your system before introducing a class to it, and if in doubt,
+             running a separate copy on each machine used by children may well be more
+             satisfactory.</p>
+             <p>If many users are using the same shared machine, you should make sure
+             that they don't use the 'original' or 'med' versions of the Great Britain
+             and Ireland map - both of these are big, and performance will inevitably
+             be poor.</p>
+
+             <h3>Subject areas</h3>
+             <p>One of my main objectives in writing MicroWorld was to create a system
+             which would be engaging for children and would enable them to see
+             computing in the context of other subject areas.</p>
+             <h4>Geography</h4>
+             <p>Maps of Great Britain and Ireland, and of the Isle of Man, are included
+             in the distribution; however, only the 'small' version of the map of
+             Great Britain and Ireland is really useable, the others are too big and
+             will be two slow. However, you can cut a map of your local area from the
+             larger maps if that is helpful to your class.</p>
+             <p>The following rulesets are of potential use in geography teaching:</p>
+             <dl>
+              <dt>basic</dt>
+              <dd>A very simple ruleset which simply establishes vegetation in the
+              landscape. Not particularly useful in itself, but a good ruleset for
+              children to use as a basis for their own projects.</dd>
+              <dt>iceage<dt>
+              <dd>illustrates ice thawing gradually. Because of inadequacies in the
+              rule language, currently the ice retreats from north to south, which is
+              of course wrong for the northern hemisphere; but the principle of
+              retreating ice, the way in which ice retreats up mountains, and the way
+              in which ecosystems establish themselves.</dd>
+              <dt>ecology</dt>
+              <dd>Attempts to model the effects of browsers and predators - represented
+              by deer and wolves, respectively - on the landscape.</dd>
+              <dt>settlement</dt>
+              <dd>illustrates human settlement appearing first on coastal promontaries
+              (e.g. kitchen-midden people), gradually spreads inland (in this model as
+              nomadic pastoralists), and forms permanent settlements where conditions
+              are favourable. This helps explore why the towns in your locality are
+              where they are. The model is obviously simplified, but produces a
+              potentially useful account of settlement in at least north-western Europe
+              from paleolithic up to at least late bronze age. <b>Note</b> that unless
+              your map has at least some coastal promontaries this ruleset will need
+              to be modified.</dd>
+              <dt>
+             </dl>
+             <p>All of these rulesets are deliberately simple. This is so that
+             children have something to start with, but so that they can actually make
+             real, demonstrable improvements quite simply.</p>
+             <h4>History</h4>
+             <p>The <em>settlement</em> ruleset is probably the best starting point for
+             history exploration. As described above, it essentially covers only
+             pre-history; the development of the feudal system, for example, or of
+             industrialisation, are not modelled. They could be, as (more advanced)
+             class projects. Writing rules will enable discussion of why castles, or
+             mills, are positioned where they are, and what the social consequences of
+             these developments are.</p>
+             <p>You might also want to explore the conditions for the spread of epidemic
+             disease - such as the black death - I've provided a state for this,
+             but no rules.</p>
+             <h4>IT/Informatics</h4>
+             <p>Obviously, any of the rulesets but particularly the <em>life</em>
+             ruleset are good introduction points to informatics lessons. The rule
+             language is sufficiently simple that introducing children to writing
+             their own rules can begin almost as soon as basic literacy is
+             established.</p>
+             <p>In more advanced IT lessons, at the upper end of primary school or in
+             secondary schools, I would encourage you to explore modifying the engine
+             itself in your classes. Also, it would be interesting to write an
+             export program which would export MicroWorld maps to Minecraft, or
+             render them as explorable three dimensional spaces using
+             <a href="http://jmonkeyengine.org/">JMonkeyEngine</a>
+             or <a href="https://nightmod.net/">NightMod</a>.</p>
+             <h4>Art and design</h4>
+             <p>A number of projects, progressively more ambitious, are possible in
+             art and design.</p>
+             <ol>
+             <li>The tiles I've drawn are pretty basic - again, that's
+             intentional, children can easily produce better ones. They don't have to
+             be 32x32, but they do all have to be the same size.</li>
+             <li>The stylesheets providing the overall look and feel of the system
+             could be modified</li>
+             <li>If you have an IT project to render a 3d world, you will need 3d
+             models of each of the states, instead of tiles. That might be a job for
+             <a href="http://blender.org">Blender</a>.</li></ol>
+
+          <h3>Lesson plans</h3>
+              <ul>
+              {% for lesson in lessons %}
+                <li>
+                  <a href="{{servlet-context}}/md?content=lesson-plans/{{lesson}}.md">
+                    {{lesson}}
+                  </a>
+                </li>
+              {% endfor %}
+              </ul>
+            <hr/>
+            <menu>
+              <li><a href="#top">Top</a></li>
+              <li><a href="#grammar">Rule language</a></li>
+              <li><a href="#states">Implemented states</a></li>
+              <li><a href="#api">API documentation</a></li>
+              <li><a href="#teachers">For teachers</a></li>
+            </menu>
+          </div>
         </div>
       </div>
     </div>

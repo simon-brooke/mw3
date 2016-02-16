@@ -11,9 +11,11 @@
                  [bk/ring-gzip "0.1.1"]
                  [ring.middleware.logger "0.5.0"]
                  [compojure "1.4.0"]
-                 [prismatic/dommy "1.1.0"] ;; probably don't need both this and om in the longer term
+                 [prismatic/om-tools "0.4.0"]
                  [org.omcljs/om "1.0.0-alpha28"]
-                 [environ "1.0.2"]]
+                 [secretary "1.2.3"]
+                 [environ "1.0.2"]
+                 [prismatic/dommy "1.1.0"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-environ "1.0.1"]]

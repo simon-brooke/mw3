@@ -3,73 +3,39 @@
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [cljs.core.async :refer [put! chan <!]]
-            [clojure.string :as string]))
-
-(enable-console-print!)
-
-;; The state of the application.
-;; NOTE that app-state can contain vectors and maps only, not lists.
-(defonce app-state (atom {;; Available tabs/pages within the application
-                          :available-tabs {:#home-tab {:content :#home-content :text "Home"}
-                                           :#params-tab {:content :#params-content :text "Parameters"}
-                                           :#rules-tab {:content :#rules-content :text "Rules"}
-                                           :#world-tab {:content :#world-content :text "World"}
-                                           :#docs-tab {:content :#docs-content :text "Documentation"}}
-                          ;; Parameters, set up on the parameters page.
-                          :params {:available-rulesets []
-                                   :available-heightmaps []
-                                   :ruleset ""
-                                   :heightmap ""}
-                          ;; Currently active rules.
-                          :rules []
-                          ;; Currently selected tab.
-                          :selected-tab :#home-tab
-                          ;; Junk so I can see stuff during development.
-                          :text "Welcome to MicroWorld!"
-                          ;; The current state of the world.
-                          :world []}))
-
-(defn root-component [data owner]
-  (reify
-    om/IRender
-    (render [_]
-      (dom/div nil (dom/h1 nil (:text data))))))
-
-(defn tab-bar [data owner]
-  (reify
-    om/IInitState
-    (init-state [_]
-                {:selected-tab :#home-tab
-                 :selected-content :#home-content})
-;;     om/IWillMount
-;;     (will-mount [_]
-;;                 (let [selection (om/get-state owner :selected)]
-;;                   (om/transact! data :selected-tab selection)))
-    om/IRenderState
-    (render-state [this state]
-                  (apply dom/ul #js {:id "tab-bar"}
-                         (om/build-all
-                          (fn [key]
-                            (reify
-                              om/IRenderState
-                              (render-state [this {:keys [selected]}]
-                                            (dom/li
-                                             #js {:onClick (fn [e] (put! selected @key))
-                                                  :className (if (= key (:selected-tab data)) "selected" "tab")}
-                                             (:text (key (:available-tabs data)))))))
-                          (keys (:available-tabs data)){:init-state state})))))
-
+            [clojure.string :as string]
+            [secretary.core :as sec :include-macros true]
+            [goog.events :as events]
+            [goog.history.EventType :as EventType]
+            [dommy.core :as dommy :refer-macros [sel sel1]])
+  (:import goog.History))
 
 (def pages [:#home-content :#params-content :#rules-content :#world-content :#docs-content])
 
+(def available-tabs {:#home-tab {:content :#home-content :text "Home"}
+                     :#params-tab {:content :#params-content :text "Parameters"}
+                     :#rules-tab {:content :#rules-content :text "Rules"}
+                     :#world-tab {:content :#world-content :text "World"}
+                     :#docs-tab {:content :#docs-content :text "Documentation"}})
 
+;; page-to-page navigation
+(defn tab-handler
+  "Handle a click event on the tab with id `tab-id`"
+  [e tab-id]
+  (.log js/console (str "You clicked '" tab-id "'"))
+  (doseq [key (keys available-tabs)]
+    (let [content-id (:content (available-tabs key))
+          display (if (= key tab-id) "block" "none")]
+        (dommy/set-style! (sel1 content-id) :display display))))
 
-(om/root
- root-component
- app-state
- {:target (. js/document (getElementById "world-content"))})
+(defn tab-click-listener
+  "Set up a click listener on the tab with this `tab-id`"
+  [tab-id]
+  (dommy/listen! (sel1 tab-id) :click (fn [e] (tab-handler e tab-id))))
 
-(om/root
- tab-bar
- app-state
- {:target (. js/document (getElementById "tab-bar-target"))})
+;; listeners for the tab bar
+(tab-click-listener :#home-tab)
+(tab-click-listener :#params-tab)
+(tab-click-listener :#rules-tab)
+(tab-click-listener :#world-tab)
+(tab-click-listener :#docs-tab)
