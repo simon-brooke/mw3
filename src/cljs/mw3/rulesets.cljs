@@ -2,6 +2,7 @@
 
 ;; Map of available rulesets. Key is a string name of the ruleset; value is a sequence of strings
 ;; of rule text.
+
 (def rulesets
   {"ice-age" [
               "# Ice Age"
@@ -30,3 +31,10 @@
                  ;; and, again, so on.
                 ]
    })
+
+
+(defn ruleset-as-single-string
+  "Return the ruleset with this `name` as a single string."
+  [name]
+  (str (interleave (rulesets name) (repeat "\n"))))
+

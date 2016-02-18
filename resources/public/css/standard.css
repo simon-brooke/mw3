@@ -117,9 +117,13 @@ input.required:after {
 }
 
 label {
-  width: 30em;
-  min-width: 20em;
-  border-right: thin solid gray;
+  display: inline-block;
+  width: 25%;
+  padding: 0.1em 1.5em;
+  border-right: 0.25em solid grey;
+  margin-right: 2em;
+  text-align: right;
+  vertical-align: top;
 }
 
 menu li {

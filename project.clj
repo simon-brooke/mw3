@@ -15,7 +15,8 @@
                  [org.omcljs/om "1.0.0-alpha28"]
                  [secretary "1.2.3"]
                  [environ "1.0.2"]
-                 [prismatic/dommy "1.1.0"]]
+                 [prismatic/dommy "1.1.0"]
+                 [immoh/dommy.template "0.2.0"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-environ "1.0.1"]]

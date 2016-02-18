@@ -14,19 +14,29 @@
     <div id="tab-bar-target">
       <ul id="tab-bar">
         <li class="tab" id="home-tab">
-          Home
+          <a href="#home-content">
+            Home
+          </a>
         </li>
         <li class="tab" id="params-tab">
-          Parameters
+          <a href="#params-content">
+            Parameters
+          </a>
         </li>
         <li class="tab" id="rules-tab">
-          Rules
+          <a href="#rules-content">
+            Rules
+          </a>
         </li>
         <li class="tab" id="world-tab">
-          World
+          <a href="#world-content">
+            World
+          </a>
         </li>
         <li class="tab" id="docs-tab">
-          Documentation
+          <a href="#docs-content">
+            Documentation
+          </a>
         </li>
       </ul>
     </div>
@@ -36,7 +46,6 @@
         <h1>
           Welcome to MicroWorld!
         </h1>
-        <div class="content">
           <h2>What this is about</h2>
           <p>
             <img alt="Screenshot" id="screenshot" style="float: left; padding-right: 2em;" src="img/screenshot_med.png"/>
@@ -72,7 +81,7 @@
           <p>How many houses do you need for a market place? Where would people build a harbour?</p>
           <h3>Change the rules completely</h3>
           <p>I've provided rules which use the MicroWorld cellular automaton to make a simple model of the changes to land in Europe after the ice age. But you don't have to use it like that, at all.</p>
-          <p><a href='http://en.wikipedia.org/wiki/Conway's&#95;Game&#95;of&#95;Life'>Conway's Game of Life</a> is one of the famous uses of a cellular automaton. The rules for the Game of Life are very simple. To set up your game of life you'll need some initialisation rules, one for every cell you want to start live (we'll use <i>black</i> for live, and  <i>white</i> for dead):</p>
+          <p><a href="http://en.wikipedia.org/wiki/Conway's&#95;Game&#95;of&#95;Life">Conway's Game of Life</a> is one of the famous uses of a cellular automaton. The rules for the Game of Life are very simple. To set up your game of life you'll need some initialisation rules, one for every cell you want to start live (we'll use <i>black</i> for live, and  <i>white</i> for dead):</p>
           <pre>
     if x is equal to 4 and y is equal to 4 and state is new then state should be black</pre>
           <p>Add as many of these as you need for your starting pattern. Then add a rule, after all those:</p>
@@ -81,18 +90,16 @@
     </pre>
           <p>I'll leave you to work out what the rules of life are for yourself, from the Wiki page I linked to.</p>
           <p><strong>CHEAT</strong> <i>You'll find other rule sets you can explore if you go to the <a href='params'>Parameters</a> page</i>.</p>
-        </div>
       </div>
       <div id="params-content">
         <a name="params-content"></a>
         <h1>
           Set your parameters
         </h1>
-        <div class="content">
           <form action="{{servlet-context}}/params" method="POST">
             <p class="widget">
-              <label for="ruleset">The rule set to use</label>
-              <select name="ruleset">
+              <label for="params-ruleset">The rule set to use</label>
+              <select name="params-ruleset">
                 <option value="">No change - use your current rules</option>
                 {% for ruleset in rulesets %}
                 <option value="{{ruleset}}">{{ruleset}}</option>
@@ -100,8 +107,8 @@
               </select>
             </p>
             <p class="widget">
-              <label for="heightmap">The map to use</label>
-              <select name="heightmap">
+              <label for="params-heightmap">The map to use</label>
+              <select name="params-heightmap">
                 <option value="">No change - use your current map</option>
                 {% for heightmap in heightmaps %}
                 <option value="{{heightmap}}">{{heightmap}}</option>
@@ -109,38 +116,36 @@
               </select>
             </p>
             <p class="widget">
-              <label for="pause">
-                Pause duration
+              <label for="params-pause">
+                The pause before computing a new state of your world
               </label>
-              <input id="pause" type="range" value="{{pause}}" min="0" max="60" step="5" />
+              <input id="params-pause" type="range" value="{{pause}}" min="0" max="60" step="5" /> seconds
             </p>
-            <p class="help">
-              The pause beteen computing a new state of your world, in seconds
-            </p>
-            <p class="widget">
-              <label for="submit">When you have chosen your parameters</label>
-                  <input name="submit" id="submit" type="submit" value="Save your parameters!"/>
+            <p class="widget hide-if-active">
+              <label for="params-submit">When you have chosen your parameters</label>
+              <input name="submit" id="params-submit" type="submit" value="Save your parameters!"/>
             </p>
           </form>
-        </div>
       </div>
       <div id="rules-content">
         <a name="rules-content"></a>
         <h1>
           Edit your rules
         </h1>
-        <div class="content">
           <form action="{{servlet-context}}/rules" method="POST">
-            <textarea name="src" id="src" rows="10" cols="80">
-          {{rule-text}}
-            </textarea>
             <p class="widget">
-              <label for="submit">When you have finished editing</label>
-                  <input name="submit" id="submit" type="submit" value="Save your rules"/>
+              <label for="rules-src">
+                Your rules
+              </label>
+              <textarea name="rules-src" id="rules-src" rows="10" cols="80">
+              {{rule-text}}
+              </textarea>
             </p>
-
+            <p class="widget hide-if-active">
+              <label for="submit">When you have finished editing</label>
+              <input name="submit" id="submit" type="submit" value="Save your rules"/>
+            </p>
           </form>
-        </div>
       </div>
       <div id="world-content">
         <a name="world-content"></a>
@@ -154,7 +159,6 @@
         <h1>
           Read the documentation
         </h1>
-        <div class="content">
           <div>
             <a name="top"/>
             <menu>
@@ -355,7 +359,6 @@
             </menu>
           </div>
         </div>
-      </div>
     </div>
     <div id="footer">
       <div id="credits">
