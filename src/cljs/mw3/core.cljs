@@ -87,10 +87,10 @@
    {:id (str "rule-editor-" index) :class "rule-editor"}
    [:input {:type "text" :id (str "rule-input-" index) :class "rule-input" :value rule}]
    [:div {:id (str "rule-controls-" index) :class "rule-controls"}
-    [:input {:type "button" :id (str "rule-ok-" index) :class "rule-ok" :value "&#x2714;"}]
-    [:input {:type "button" :id (str "rule-up-" index) :class "rule-up" :value "&uarr;"}]
-    [:input {:type "button" :id (str "rule-down-" index) :class "rule-down" :value "&darr;"}]
-    [:input {:type "button" :id (str "rule-cancel-" index) :class "rule-cancel" :value "&#x2718;"}]]
+    [:input {:type "button" :id (str "rule-ok-" index) :class "rule-ok" :value "ok"}]                ;; &#x2714;
+    [:input {:type "button" :id (str "rule-up-" index) :class "rule-up" :value "up"}]                ;; &uarr;
+    [:input {:type "button" :id (str "rule-down-" index) :class "rule-down" :value "down"}]          ;; &darr;
+    [:input {:type "button" :id (str "rule-delete-" index) :class "rule-delete" :value "delete"}]]   ;; &#x2718;
    [:pre {:id (str "rule-feedback-" index) :class "rule-feedback"}]
    ])
 
@@ -111,20 +111,8 @@
   (let [rules-container (sel1 :#rules-container)
         ruleset (rulesets/rulesets name)]
     (dommy/clear! rules-container)
-    (doseq [rule ruleset index (range (count ruleset))]
+    (doseq [[rule index] (map #(list %1 %2) ruleset (range (count ruleset)))]
       (dommy/append! rules-container (rule-editor rule index)))))
-
-;;(rule-editors "settlement")
-
-(load-ruleset "settlement")
-
-;; (rulesets/rulesets "ice-age")
-
-(def x (sel1 :#rules-container))
-
-(dommy/append! x (rule-editor "if state is new then state should be grass" 1))
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up the screen on loading
@@ -148,4 +136,5 @@
 ;; (rebuild-ruleset-menu)
 
 ;; put the default ruleset into the rulesets pages
-;; (dommy/set-text! (sel1 :#rules-src) (rulesets/ruleset-as-single-string "ice-age"))
+(load-ruleset "settlement")
+

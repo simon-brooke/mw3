@@ -67,20 +67,15 @@ li.tab a:active { background: gray; color: white; }
     color: white;
 }
 
-.rule-editor {
-  color: black;
-  background-color: silver;
-  padding: 0;
-}
-
-.rule-cancel {
-  color: white;
-  background-color: red;
-}
-
 .rule-controls {
   float: right;
   margin-left: 2em;
+  display: none;
+}
+
+.rule-delete {
+  color: white;
+  background-color: red;
 }
 
 .rule-down {
@@ -88,16 +83,32 @@ li.tab a:active { background: gray; color: white; }
   background-color: orange;
 }
 
+.rule-editor {
+  color: black;
+  background-color: silver;
+  padding: 0;
+}
+
+.rule-editor:hover .rule-controls, .rule-editor:hover .rule-feedback {
+  display: block;
+}
+
 .rule-feedback {
   font-family: monospace;
   padding: 0.25em 1em;
   width: 80%;
+  display: none;
 }
 
 .rule-input {
   font-family: monospace;
   width: 100%;
   padding: 0.25em 1em;
+  display: block;
+}
+
+.rule-input:focus ~ .rule-controls, .rule-input:focus ~ .rule-feedback {
+  display: block;
 }
 
 .rule-ok {
