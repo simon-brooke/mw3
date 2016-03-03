@@ -67,6 +67,49 @@ li.tab a:active { background: gray; color: white; }
     color: white;
 }
 
+.rule-editor {
+  color: black;
+  background-color: silver;
+  padding: 0;
+}
+
+.rule-cancel {
+  color: white;
+  background-color: red;
+}
+
+.rule-controls {
+  float: right;
+  margin-left: 2em;
+}
+
+.rule-down {
+  color: maroon;
+  background-color: orange;
+}
+
+.rule-feedback {
+  font-family: monospace;
+  padding: 0.25em 1em;
+  width: 80%;
+}
+
+.rule-input {
+  font-family: monospace;
+  width: 100%;
+  padding: 0.25em 1em;
+}
+
+.rule-ok {
+  color: white;
+  background-color: green;
+}
+
+.rule-up {
+  color: forest;
+  background-color: yellow;
+}
+
 .widget {
 	background-color: silver;
  	border: thin solid white;
@@ -99,7 +142,7 @@ h1, h2, h3, h4, h5 {
   color: white;
 }
 
-div.content, form, p, pre, ul, ol, dl, menu, h2, h3, h4, h5 {
+div.content, div#params-container, div#rules-container, p, ul, ol, dl, menu, h2, h3, h4, h5 {
   padding: 0.25em 10%;
 }
 

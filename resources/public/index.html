@@ -96,10 +96,11 @@
         <h1>
           Set your parameters
         </h1>
+        <div id="params-container">
           <form action="{{servlet-context}}/params" method="POST">
             <p class="widget">
               <label for="params-ruleset">The rule set to use</label>
-              <select name="params-ruleset">
+              <select name="params-ruleset" id="params-ruleset">
                 <option value="">No change - use your current rules</option>
                 {% for ruleset in rulesets %}
                 <option value="{{ruleset}}">{{ruleset}}</option>
@@ -126,12 +127,24 @@
               <input name="submit" id="params-submit" type="submit" value="Save your parameters!"/>
             </p>
           </form>
+        </div>
       </div>
       <div id="rules-content">
         <a name="rules-content"></a>
         <h1>
           Edit your rules
         </h1>
+        <div id="rules-container">
+          <div id="rule-editor-1" class="rule-editor">
+            <input type="text" size="40" id="rule-input-1" class="rule-input" value="if state is grassland then 1 chance in 10 state should be heath"/>
+            <div id="rule-controls-1" class="rule-controls">
+              <input type="button" id="rule-ok-1" class="rule-ok" value="&#x2714;"/>
+              <input type="button" id="rule-up-1" class="rule-up" value="&uarr;"/>
+              <input type="button" id="rule-down-1" class="rule-down" value="&darr;"/>
+              <input type="button" id="rule-cancel-1" class="rule-cancel" value="&#x2718;"/>
+            </div>
+            <pre id="rule-1-feedback" class="rule-feedback">This is feedback on your rule.</pre>
+          </div>
           <form action="{{servlet-context}}/rules" method="POST">
             <p class="widget">
               <label for="rules-src">
@@ -146,6 +159,7 @@
               <input name="submit" id="submit" type="submit" value="Save your rules"/>
             </p>
           </form>
+        </div>
       </div>
       <div id="world-content">
         <a name="world-content"></a>

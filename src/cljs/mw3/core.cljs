@@ -63,12 +63,32 @@
   (dommy/listen! (sel1 tab-id) :click (fn [e] (tab-handler e tab-id))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Params page
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn rebuild-ruleset-menu
+  []
+  (let [menu (sel1 :#params-ruleset)]
+    (dommy/set-html!
+      menu
+      (temp/->document-fragment (temp/node [:ul "Froboz"])))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rules page
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn load-ruleset
   [name]
-)
+  (let [rules-container (sel1 :#rules-container)
+        ruleset (rulesets/rulesets name)]
+    (dommy/clear! rules-container)
+    (dommy/set-html!
+      rules-container
+      (temp/node
+        [:ul
+         (map #(vec (list :ul %)) ruleset)]))))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up the screen on loading
@@ -87,6 +107,9 @@
 
 ;; hide all pages except home-tab
 (tab-handler nil :#home-tab)
+
+;; set up the rulesets menu with the rulesets we actually have.
+(rebuild-ruleset-menu)
 
 ;; put the default ruleset into the rulesets pages
 (dommy/set-text! (sel1 :#rules-src) (rulesets/ruleset-as-single-string "ice-age"))
