@@ -1,4 +1,5 @@
 (ns ^:figwheel-always mw3.core
+  (:use-macros [dommy.template :only [node deftemplate]])
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require
     [mw3.rulesets :as rulesets]
@@ -77,16 +78,51 @@
 ;; Rules page
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
+(deftemplate rule-editor
+  ;; "Constructs an editor for this `rule` with this `index`
+  [rule index]
+  [:div
+   {:id (str "rule-editor-" index) :class "rule-editor"}
+   [:input {:type "text" :id (str "rule-input-" index) :class "rule-input" :value rule}]
+   [:div {:id (str "rule-controls-" index) :class "rule-controls"}
+    [:input {:type "button" :id (str "rule-ok-" index) :class "rule-ok" :value "&#x2714;"}]
+    [:input {:type "button" :id (str "rule-up-" index) :class "rule-up" :value "&uarr;"}]
+    [:input {:type "button" :id (str "rule-down-" index) :class "rule-down" :value "&darr;"}]
+    [:input {:type "button" :id (str "rule-cancel-" index) :class "rule-cancel" :value "&#x2718;"}]]
+   [:pre {:id (str "rule-feedback-" index) :class "rule-feedback"}]
+   ])
+
+;; (deftemplate rule-editors
+;;   ;; Constructs, as a `div`, a set of rule editors for the rules in the ruleset with
+;;   ;; this `ruleset-name`.
+;;   [ruleset-name]
+;;   [:div
+;;    (vec
+;;      (map
+;;        #(rule-editor % %)
+;;        (rulesets/rulesets ruleset-name)
+;;        (range)))])
+
 (defn load-ruleset
+  "Loads the ruleset with the specified `name` into a set of rule editors"
   [name]
   (let [rules-container (sel1 :#rules-container)
         ruleset (rulesets/rulesets name)]
     (dommy/clear! rules-container)
-    (dommy/set-html!
-      rules-container
-      (temp/node
-        [:ul
-         (map #(vec (list :ul %)) ruleset)]))))
+    (doseq [rule ruleset index (range (count ruleset))]
+      (dommy/append! rules-container (rule-editor rule index)))))
+
+;;(rule-editors "settlement")
+
+(load-ruleset "settlement")
+
+;; (rulesets/rulesets "ice-age")
+
+(def x (sel1 :#rules-container))
+
+(dommy/append! x (rule-editor "if state is new then state should be grass" 1))
 
 
 
@@ -109,7 +145,7 @@
 (tab-handler nil :#home-tab)
 
 ;; set up the rulesets menu with the rulesets we actually have.
-(rebuild-ruleset-menu)
+;; (rebuild-ruleset-menu)
 
 ;; put the default ruleset into the rulesets pages
-(dommy/set-text! (sel1 :#rules-src) (rulesets/ruleset-as-single-string "ice-age"))
+;; (dommy/set-text! (sel1 :#rules-src) (rulesets/ruleset-as-single-string "ice-age"))
