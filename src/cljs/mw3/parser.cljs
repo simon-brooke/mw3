@@ -1,4 +1,4 @@
-(ns mw-parser.declarative
+(ns ^:figwheel-always mw3.parser
   (:use mw-engine.utils
         [clojure.string :only [split trim triml]])
   (:require [instaparse.core :as insta]))
