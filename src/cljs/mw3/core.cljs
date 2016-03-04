@@ -78,7 +78,12 @@
 ;; Rules page
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
+(defn ^:export rule-ok-click-handler
+  "Handle the click action on the rule `ok` button with this `index`."
+  [index]
+  (let [rule-input (sel1 (keyword (str "#rule-input-" index)))
+        rule-text (if rule-input (dommy/attr rule-input :value) "Rule input not found")]
+    (.log js/console (str "rule-ok-click-handler called with index " index ": " rule-text))))
 
 (deftemplate rule-editor
   ;; "Constructs an editor for this `rule` with this `index`
@@ -87,23 +92,13 @@
    {:id (str "rule-editor-" index) :class "rule-editor"}
    [:input {:type "text" :id (str "rule-input-" index) :class "rule-input" :value rule}]
    [:div {:id (str "rule-controls-" index) :class "rule-controls"}
-    [:input {:type "button" :id (str "rule-ok-" index) :class "rule-ok" :value "ok"}]                ;; &#x2714;
+    [:input {:type "button" :id (str "rule-ok-" index) :class "rule-ok" :value "ok"
+             :onclick (str "mw3.core.rule_ok_click_handler(" index ")")}]                ;; &#x2714;
     [:input {:type "button" :id (str "rule-up-" index) :class "rule-up" :value "up"}]                ;; &uarr;
     [:input {:type "button" :id (str "rule-down-" index) :class "rule-down" :value "down"}]          ;; &darr;
     [:input {:type "button" :id (str "rule-delete-" index) :class "rule-delete" :value "delete"}]]   ;; &#x2718;
    [:pre {:id (str "rule-feedback-" index) :class "rule-feedback"}]
    ])
-
-;; (deftemplate rule-editors
-;;   ;; Constructs, as a `div`, a set of rule editors for the rules in the ruleset with
-;;   ;; this `ruleset-name`.
-;;   [ruleset-name]
-;;   [:div
-;;    (vec
-;;      (map
-;;        #(rule-editor % %)
-;;        (rulesets/rulesets ruleset-name)
-;;        (range)))])
 
 (defn load-ruleset
   "Loads the ruleset with the specified `name` into a set of rule editors"
