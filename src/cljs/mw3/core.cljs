@@ -4,7 +4,8 @@
   (:require
     [mw3.rulesets :as rulesets]
     [dommy.core :as dommy :refer-macros [sel sel1]]
-    [dommy.template :as temp]))
+    [dommy.template :as temp]
+    ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -78,82 +79,47 @@
 ;; Rules page
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn ^:export rule-ok-click-handler
+  "Handle the click action on the rule `ok` button with this `index`."
+  [index]
+  (let [rule-input (sel1 (keyword (str "#rule-input-" index)))
+        rule-text (if rule-input (dommy/attr rule-input :value) "Rule input not found")]
+    (.log js/console (str "rule-ok-click-handler called with index " index ": " rule-text))))
+
 (deftemplate rule-editor
-  ;; "Constructs an editor for this `rule` with this `index`, given this `total`
-  ;; number of rules.
-  [rule index total]
+  ;; "Constructs an editor for this `rule` with this `index`
+  [rule index]
   [:div
    {:id (str "rule-editor-" index) :class "rule-editor"}
    [:input {:type "text" :id (str "rule-input-" index) :class "rule-input" :value rule}]
    [:div {:id (str "rule-controls-" index) :class "rule-controls"}
-    [:input {:type "button"
-             :id (str "rule-ok-" index)
-             :class "rule-ok"
-             :value "ok"}]                             ;; &#x2714;
-    [:input {:type "button"
-             :id (str "rule-up-" index)
-             :class "rule-up"
-             :value "up"
-             :disabled (= index 0)}]                   ;; &uarr;
-    [:input {:type "button"
-             :id (str "rule-down-" index)
-             :class "rule-down"
-             :value "down"
-             :disabled (= index total)}]               ;; &darr;
-    [:input {:type "button"
-             :id (str "rule-delete-" index)
-             :class "rule-delete"
-             :value "delete"}]]                        ;; &#x2718;
-   [:pre {:id (str "rule-feedback-" index) :class "rule-feedback"}]])
+    [:input {:type "button" :id (str "rule-ok-" index) :class "rule-ok" :value "ok"
+             :onclick (str "mw3.core.rule_ok_click_handler(" index ")")}]                ;; &#x2714;
+    [:input {:type "button" :id (str "rule-up-" index) :class "rule-up" :value "up"}]                ;; &uarr;
+    [:input {:type "button" :id (str "rule-down-" index) :class "rule-down" :value "down"}]          ;; &darr;
+    [:input {:type "button" :id (str "rule-delete-" index) :class "rule-delete" :value "delete"}]]   ;; &#x2718;
+   [:pre {:id (str "rule-feedback-" index) :class "rule-feedback"}]
+   ])
 
-(defn rule-up-handler
-  "A handler to move the rule with index `n` one place up the list."
-  [n id]
-  (.log js/console (str id " pressed")))
-
-(defn rule-down-handler
-  "A handler to move the rule with index `n` one place down the list."
-  [n id]
-  (.log js/console (str id " pressed")))
-
-(defn rule-compile-handler
-  "A handler to compile the rule with index `n`."
-  [n id]
-  (.log js/console (str id " pressed")))
-
-(defn rule-delete-handler
-  "A handler to delete the rule with index `n`."
-  [n id]
-  (.log js/console (str id " pressed")))
+;; (deftemplate rule-editors
+;;   ;; Constructs, as a `div`, a set of rule editors for the rules in the ruleset with
+;;   ;; this `ruleset-name`.
+;;   [ruleset-name]
+;;   [:div
+;;    (vec
+;;      (map
+;;        #(rule-editor % %)
+;;        (rulesets/rulesets ruleset-name)
+;;        (range)))])
 
 (defn load-ruleset
-  "Loads the ruleset with the specified `name` into a set of rule editors."
+  "Loads the ruleset with the specified `name` into a set of rule editors"
   [name]
   (let [rules-container (sel1 :#rules-container)
-        ruleset (rulesets/rulesets name)
-        total (count ruleset)
-        indexed-rules (map #(list %1 %2) ruleset (range))]
+        ruleset (rulesets/rulesets name)]
     (dommy/clear! rules-container)
-    (doseq [[rule index] indexed-rules]
-      (dommy/append! rules-container (rule-editor rule index total)))
-    (doseq [[rule index] indexed-rules]
-      (let [ok-id (str "rule-ok-" index)
-            up-id (str "rule-up-" index)
-            down-id (str "rule-down-" index)
-            delete-id (str "rule-delete-" index)
-            ok-elt (sel1 ok-id)
-            up-elt (sel1 up-id)
-            down-elt (sel1 down-id)
-            delete-elt (sel1 delete-id)]
-        (if ok-elt
-          (dommy/listen! (sel1 ok-id) :click (fn [e] (rule-compile-handler e ok-id)))
-          (.log js/console (str "Could not find an element with id " ok-id)))
-        (if up-elt
-          (dommy/listen! (sel1 up-id) :click (fn [e] (rule-up-handler e up-id))))
-        (if down-elt
-          (dommy/listen! (sel1 down-id) :click (fn [e] (rule-down-handler e down-id))))
-        (if delete-elt
-          (dommy/listen! (sel1 delete-id) :click (fn [e] (rule-delete-handler e delete-id))))))))
+    (doseq [[rule index] (map #(list %1 %2) ruleset (range (count ruleset)))]
+      (dommy/append! rules-container (rule-editor rule index)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set up the screen on loading
