@@ -1,4 +1,5 @@
 (ns ^:figwheel-always mw3.core
+  (:use mw3.utils)
   (:use-macros [dommy.template :only [node deftemplate]])
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require
