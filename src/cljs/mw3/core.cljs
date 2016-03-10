@@ -4,7 +4,8 @@
   (:require
     [mw3.rulesets :as rulesets]
     [dommy.core :as dommy :refer-macros [sel sel1]]
-    [dommy.template :as temp]))
+    [dommy.template :as temp]
+    ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
